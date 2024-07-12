@@ -2,8 +2,7 @@ require("dotenv").config();
 const { Client } = require("pg");
 const bcrypt = require("bcryptjs");
 const users = require("./userSeed");
-const products = require("./bourbonSeed");
-
+const products = require("./spirits/whiskey/bourbonSeed");
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
 });
