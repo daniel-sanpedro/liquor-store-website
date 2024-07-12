@@ -1,4 +1,4 @@
-const products = [
+const bourbonWhiskey = [
   {
     id: 1,
     name: "Bulleit Bourbon",
@@ -1873,3 +1873,5 @@ const products = [
     availability: "In Stock",
   },
 ];
+
+module.exports = bourbonWhiskey;

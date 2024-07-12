@@ -2,7 +2,7 @@ require("dotenv").config();
 const { Client } = require("pg");
 const bcrypt = require("bcryptjs");
 const users = require("./userSeed");
-const products = require("./spirits/whiskey/bourbonSeed");
+const bourbonWhiskey = require("./spirits/whiskey/bourbonSeed");
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
 });
@@ -14,7 +14,7 @@ const seedDatabase = async () => {
     console.log("Deleting existing data...");
 
     await client.query("DELETE FROM users");
-    await client.query("DELETE FROM products");
+    await client.query("DELETE FROM bourbonWhiskey");
 
     console.log("Seeding users...");
 
@@ -36,12 +36,12 @@ const seedDatabase = async () => {
       console.log(`Seeded user: ${user.username}`);
     }
 
-    console.log("Users seeded successfully. Seeding products...");
+    console.log("Users seeded successfully. Seeding bourbonWhiskey...");
 
-    for (const product of products) {
+    for (const product of bourbonWhiskey) {
       console.log("Seeding product:", product);
       const res = await client.query(
-        `INSERT INTO products (name, description, price, quantity, img_url)
+        `INSERT INTO bourbonWhiskey (name, description, price, quantity, img_url)
          VALUES ($1, $2, $3, $4, $5) RETURNING *`,
         [
           product.name,
