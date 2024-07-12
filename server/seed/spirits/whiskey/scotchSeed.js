@@ -183,7 +183,6 @@ const scotchWhiskies = [
     pairing: "BBQ, smoked meats",
     availability: "In Stock",
   },
-  // Continue to add 90 more entries in a similar fashion...
   {
     id: 11,
     name: "Oban 14 Year Old",
