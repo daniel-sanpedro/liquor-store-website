@@ -29,10 +29,12 @@ const sparklingWines = require("./wines/champagne-sparkling/sparklingSeed");
 const redWines = require("./wines/red/redSeed");
 const sweetWines = require("./wines/sweet/sweetSeed");
 const whiteWines = require("./wines/white/whiteSeed");
+const events = require("./events/eventsSeed");
 
 // Import your Mongoose models
 const User = require("../models/User");
 const Product = require("../models/Product");
+const Event = require("../models/Event");
 
 // Connect to your MongoDB
 mongoose.connect("mongodb://localhost:27017/yourdatabase", {
@@ -53,6 +55,13 @@ const seedProducts = async (products, category) => {
   for (let product of products) {
     product.category = category;
     await Product.create(product);
+  }
+};
+
+// Function to seed events
+const seedEvents = async () => {
+  for (let event of events) {
+    await Event.create(event);
   }
 };
 
@@ -91,7 +100,11 @@ const seedDatabase = async () => {
     await seedProducts(sweetWines, "Sweet Wine");
     await seedProducts(whiteWines, "White Wine");
 
-    console.log("All products seeded successfully.");
+    // Seed events
+    await seedEvents();
+    console.log("Events seeded successfully.");
+
+    console.log("All data seeded successfully.");
     mongoose.connection.close();
   } catch (error) {
     console.error("Error seeding database:", error);
