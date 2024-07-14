@@ -1,26 +1,26 @@
 const express = require("express");
+const router = express.Router();
+
 const authRoutes = require("./auth/authRoutes");
 const cartRoutes = require("./cart/cartRoutes");
-const categoryRoutes = require("./category/categoryRoutes");
-const orderRoutes = require("./order/orderRoutes");
+const eventRoutes = require("./events/eventRoutes");
+const categoryRoutes = require("./products/categoryRoutes");
 const productRoutes = require("./products/productRoutes");
-const reviewRoutes = require("./review/reviewRoutes");
+const reviewRoutes = require("./products/reviewRoutes");
+const orderRoutes = require("./transaction/orderRoutes");
 const transactionRoutes = require("./transaction/transactionRoutes");
 const usersRoutes = require("./user/usersRoutes");
-const wishlistRoutes = require("./wishlist/wishlistRoutes");
-const eventRoutes = require("./events/eventRoutes");
-
-const router = express.Router();
+const wishlistRoutes = require("./user/wishlistRoutes");
 
 router.use("/auth", authRoutes);
 router.use("/cart", cartRoutes);
+router.use("/events", eventRoutes);
 router.use("/categories", categoryRoutes);
-router.use("/orders", orderRoutes);
 router.use("/products", productRoutes);
 router.use("/reviews", reviewRoutes);
+router.use("/orders", orderRoutes);
 router.use("/transactions", transactionRoutes);
 router.use("/users", usersRoutes);
 router.use("/wishlist", wishlistRoutes);
-router.use("/events", eventRoutes);
 
 module.exports = router;

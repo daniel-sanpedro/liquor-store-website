@@ -1,17 +1,11 @@
 const express = require("express");
+const userController = require("../controllers/userController");
+const authMiddleware = require("../middleware/authMiddleware");
 const router = express.Router();
 
-// Example route to get users
-router.get("/users", async (req, res) => {
-  const pool = req.app.locals.pool;
-
-  try {
-    const result = await pool.query("SELECT * FROM users");
-    res.json(result.rows);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Database query error" });
-  }
-});
+router.get("/", authMiddleware, userController.getUsers);
+router.get("/:userId", authMiddleware, userController.getUser);
+router.put("/:userId", authMiddleware, userController.updateUser);
+router.delete("/:userId", authMiddleware, userController.deleteUser);
 
 module.exports = router;
